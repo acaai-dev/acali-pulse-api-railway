@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ACAΛI Login</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background: #f6f6f6;
+    }
+
+    .login-container {
+      background: white;
+      padding: 2rem 3rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .login-container img {
+      width: 64px;
+      margin-bottom: 1rem;
+    }
+
+    .login-container h1 {
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+    }
+
+    .slogan {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    .login-button {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #111;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .login-button:hover {
+      background-color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <img src="logo.png" alt="ACAΛI Logo" />
+    <h1>ACAΛI</h1>
+    <p class="slogan">Smart Spaces. Human Rhythm.</p>
+    <button class="login-button" onclick="login()">Login</button>
+  </div>
+
+  <script>
+    function login() {
+      window.location.href = "dashboard.html";
+    }
+  </script>
+</body>
+</html>

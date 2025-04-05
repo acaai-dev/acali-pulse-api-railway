@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ACAΛI Lambda UI</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f5f2eb;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+        .slider-container {
+            margin: 30px;
+        }
+        .slider-label {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        input[type=range] {
+            width: 300px;
+        }
+        .presets button {
+            margin: 10px;
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            background-color: #ded8ca;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .presets button:hover {
+            background-color: #c7c0b2;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>ACAΛI Comfort Control</h1>
+
+    <div class="slider-container">
+        <div class="slider-label">Temperatuurvoorkeur</div>
+        <input type="range" min="16" max="28" value="22" id="tempSlider">
+        <div>Gekozen temperatuur: <span id="tempValue">22</span>°C</div>
+    </div>
+
+    <div class="presets">
+        <div class="slider-label">Presets:</div>
+        <button onclick="selectPreset('Focus')">Focus</button>
+        <button onclick="selectPreset('Relax')">Ontspanning</button>
+        <button onclick="selectPreset('Stilte')">Stilte</button>
+    </div>
+
+    <script>
+        const slider = document.getElementById("tempSlider");
+        const output = document.getElementById("tempValue");
+        slider.oninput = function() {
+            output.textContent = this.value;
+        };
+
+        function selectPreset(name) {
+            alert("Preset geselecteerd: " + name);
+        }
+    </script>
+
+</body>
+</html>

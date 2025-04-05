@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ACAΛI Dashboard</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      background: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .dashboard-container {
+      background: white;
+      padding: 2rem 3rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 2rem;
+    }
+
+    .button {
+      padding: 0.75rem 1.5rem;
+      margin: 0.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #111;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+    <h2>Welkom bij je dashboard</h2>
+    <button class="button" onclick="goToComfort()">Comfort Instellingen</button>
+    <button class="button" onclick="logout()">Logout</button>
+  </div>
+
+  <script>
+    function goToComfort() {
+      window.location.href = "comfort.html";
+    }
+
+    function logout() {
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

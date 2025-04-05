@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ACAΛI Comfort</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header><h2>Comfortinstellingen</h2></header>
+    <main>
+        <p>Huidige preset: <span id="activePreset"></span></p>
+        <input type="range" min="-2" max="2" value="0" step="1" id="slider">
+        <p>Voorkeur: <span id="sliderValue">Neutraal</span></p>
+        <br>
+        <button onclick="goBack()">Terug naar dashboard</button>
+    </main>
+    <script>
+        const preset = localStorage.getItem('selectedPreset') || 'Geen';
+        document.getElementById("activePreset").innerText = preset;
+
+        const slider = document.getElementById("slider");
+        const valueLabel = document.getElementById("sliderValue");
+
+        slider.addEventListener("input", () => {
+            const value = parseInt(slider.value);
+            valueLabel.textContent = value === 0 ? "Neutraal" : (value > 0 ? "Warmer" : "Kouder");
+        });
+
+        function goBack() {
+            window.location.href = "dashboard.html";
+        }
+    </script>
+</body>
+</html>

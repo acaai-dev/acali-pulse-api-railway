@@ -1,0 +1,16 @@
+Gedrag / Detectie,Te programmeren systemen,Type Logica,Opmerkingen / Bijzonderheden,Prioriteit,Fase,Complexiteit,Sensorvereisten,Status
+Geen beweging,"Licht, HVAC, Ventilatie",Regelgebaseerd,Controleer sensorinput & comfortgrenzen,Hoog,Fase 1,Laag,Aanwezigheidssensor,Nog te doen
+Hoge CO₂-waarde,"HVAC, Ventilatie, CO₂-monitoring",Regelgebaseerd,Controleer sensorinput & comfortgrenzen,Hoog,Fase 1,Laag,CO₂-sensor,Nog te doen
+Volle zonlichtinval,"Licht, HVAC, Ventilatie",Regelgebaseerd,Controleer sensorinput & comfortgrenzen,Hoog,Fase 1,Laag,Lichtsensor,Nog te doen
+Ruimte bezet,"Licht, HVAC, Ventilatie, CO₂-monitoring",Regelgebaseerd,Controleer sensorinput & comfortgrenzen,Hoog,Fase 1,Laag,"Aanwezigheidssensor, CO₂-sensor",Nog te doen
+Langdurig leeg (>2u),"Licht, HVAC, Ventilatie",Regelgebaseerd,Controleer sensorinput & comfortgrenzen,Hoog,Fase 1,Laag,"Aanwezigheidssensor, klok",Nog te doen
+Open raam gedetecteerd,"HVAC, Ventilatie, CO₂-monitoring",Regelgebaseerd,Controleer sensorinput & comfortgrenzen,Hoog,Fase 1,Laag,Raam-/contactsensor,Nog te doen
+Samenkomst of overleg,"Licht, HVAC, Ventilatie, CO₂-monitoring",Combinatie (regel + AI),Controleer sensorinput & comfortgrenzen,Middel,Fase 2,Middel,"Geluidssensor, aanwezigheid",Nog te doen
+Bezetting zonder CO₂-stijging,"Licht, HVAC, Ventilatie, CO₂-monitoring",AI-gestuurd,Controleer sensorinput & comfortgrenzen,Laag,Fase 3,Hoog,"Aanwezigheidssensor, CO₂-sensor",Nog te doen
+Start van de dag,"Licht, HVAC, Ventilatie, CO₂-monitoring",Regelgebaseerd,Controleer sensorinput & comfortgrenzen,Hoog,Fase 1,Laag,Klok/tijdtrigger,Nog te doen
+Einde van de dag,"Licht, HVAC, Ventilatie, CO₂-monitoring",Regelgebaseerd,Controleer sensorinput & comfortgrenzen,Hoog,Fase 1,Laag,Klok/tijdtrigger,Nog te doen
+Snelle temperatuurstijging,"HVAC, Ventilatie, CO₂-monitoring",AI-gestuurd,Controleer sensorinput & comfortgrenzen,Laag,Fase 3,Hoog,Temperatuursensor,Nog te doen
+Afwijkend verbruiksprofiel,"Licht, HVAC, Ventilatie, CO₂-monitoring",AI-gestuurd,Controleer sensorinput & comfortgrenzen,Laag,Fase 3,Hoog,"Energiemeter, bezetting",Nog te doen
+Deur blijft open staan,"HVAC, Ventilatie, CO₂-monitoring",Regelgebaseerd,Controleer sensorinput & comfortgrenzen,Hoog,Fase 1,Laag,Contactsensor of deurdetector,Nog te doen
+Nachtbezetting of schoonmaakactiviteit,"Licht, HVAC, Ventilatie, CO₂-monitoring",Combinatie (regel + AI),Controleer sensorinput & comfortgrenzen,Middel,Fase 2,Middel,"Aanwezigheidssensor, tijd",Nog te doen
+Stijgende vochtigheid,"HVAC, Ventilatie, CO₂-monitoring",AI-gestuurd,Controleer sensorinput & comfortgrenzen,Laag,Fase 3,Hoog,"Vochtigheidssensor, CO₂-sensor",Nog te doen

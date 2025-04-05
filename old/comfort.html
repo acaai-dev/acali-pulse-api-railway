@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ACAΛI Comfort Instellingen</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      background: #f8f8f8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .comfort-container {
+      background: white;
+      padding: 2rem 3rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 1.5rem;
+    }
+
+    .button {
+      padding: 0.75rem 1.5rem;
+      margin-top: 1rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #111;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="comfort-container">
+    <h2>Comfortinstellingen (placeholder)</h2>
+    <p>Hier komen later je persoonlijke instellingen voor licht, temperatuur en sfeer.</p>
+    <button class="button" onclick="goBack()">Terug naar Dashboard</button>
+  </div>
+
+  <script>
+    function goBack() {
+      window.location.href = "dashboard.html";
+    }
+  </script>
+</body>
+</html>

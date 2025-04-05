@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pulse AI Visualisatie</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background: #f6f6f6;
+      color: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      background: white;
+      padding: 2rem;
+      border-radius: 24px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      max-width: 800px;
+      text-align: center;
+    }
+
+    img {
+      width: 48px;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      letter-spacing: 1px;
+    }
+
+    .slogan {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    .flow-chart {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .step {
+      background: #f0f0f0;
+      padding: 1rem;
+      border-radius: 16px;
+      width: 150px;
+      min-height: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      position: relative;
+    }
+
+    .step::after {
+      content: "→";
+      font-size: 1.5rem;
+      position: absolute;
+      right: -1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .step:last-child::after {
+      content: "";
+    }
+
+    .label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .explanation {
+      font-size: 0.8rem;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="logo.png" alt="ACAΛI Logo" />
+    <h1>PULSE AI</h1>
+    <p class="slogan">Zo denkt ACAΛI: gedrag ➝ sensoren ➝ intelligentie ➝ actie</p>
+
+    <div class="flow-chart">
+      <div class="step">
+        <div class="label">Gedrag</div>
+        <div class="explanation">Persoon beweegt, werkt, of past iets aan</div>
+      </div>
+      <div class="step">
+        <div class="label">Sensoren</div>
+        <div class="explanation">CO₂, licht, temperatuur, aanwezigheid</div>
+      </div>
+      <div class="step">
+        <div class="label">Pulse AI</div>
+        <div class="explanation">Analyseert voorkeuren, patronen & context</div>
+      </div>
+      <div class="step">
+        <div class="label">Actie</div>
+        <div class="explanation">Licht, temperatuur of sfeer past zich aan</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

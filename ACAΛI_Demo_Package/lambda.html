@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ACAΛI Lambda UI</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      background: #f8f8f8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      transition: background 0.5s ease, color 0.5s ease;
+    }
+
+    .lambda-container {
+      background: white;
+      padding: 2rem;
+      border-radius: 24px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 320px;
+    }
+
+    .lambda-container img {
+      width: 48px;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    .slogan {
+      font-size: 0.85rem;
+      color: #777;
+      margin-bottom: 1.5rem;
+    }
+
+    .presets {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .preset {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      color: white;
+      transition: background 0.3s ease;
+    }
+
+    .focus    { background-color: #556ee6; }
+    .flow     { background-color: #00bcd4; }
+    .herbron  { background-color: #4caf50; }
+    .dynamiek { background-color: #f44336; }
+
+    .slider-container {
+      margin: 1rem 0;
+      text-align: left;
+    }
+
+    .slider-container label {
+      font-size: 0.85rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .slider {
+      width: 100%;
+    }
+
+    .light-button {
+      padding: 0.5rem 1.25rem;
+      margin-top: 1rem;
+      background-color: #111;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .light-button:hover {
+      background-color: #333;
+    }
+
+    .status {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: #333;
+      min-height: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="lambda-container">
+    <img src="logo.png" alt="ACAΛI Logo" />
+    <h2>Lambda UI</h2>
+    <p class="slogan">Smart Spaces. Human Rhythm.</p>
+
+    <div class="presets">
+      <button class="preset focus" onclick="setStatus('Sfeer: Focus – Koel en helder.')">Focus</button>
+      <button class="preset flow" onclick="setStatus('Sfeer: Flow – Creatief en vrij.')">Flow</button>
+      <button class="preset herbron" onclick="setStatus('Sfeer: Herbronning – Warm en zacht.')">Herbronning</button>
+      <button class="preset dynamiek" onclick="setStatus('Sfeer: Dynamiek – Energie en actie.')">Dynamiek</button>
+    </div>
+
+    <div class="slider-container">
+      <label for="tempSlider">Voorkeurstemperatuur (gevoel):</label>
+      <input type="range" min="0" max="100" value="50" class="slider" id="tempSlider" oninput="updateTemp(this.value)">
+      <div id="tempValue">Neutraal</div>
+    </div>
+
+    <button class="light-button" onclick="setStatus('Licht verhoogd.')">Meer licht</button>
+
+    <div class="status" id="statusText"></div>
+  </div>
+
+  <script>
+    function setStatus(text) {
+      document.getElementById("statusText").textContent = text;
+    }
+
+    function updateTemp(value) {
+      let text = "Neutraal";
+      if (value < 40) text = "Koeler";
+      else if (value > 60) text = "Warmer";
+      document.getElementById("tempValue").textContent = text;
+    }
+  </script>
+</body>
+</html>

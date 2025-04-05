@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>ACAΛI Portaal – Zones</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f6f4ed;
+      padding: 40px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .zone-grid {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .zone-tile {
+      background-color: white;
+      border: 2px solid #e0ddd7;
+      border-radius: 12px;
+      padding: 20px;
+      width: 200px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease;
+    }
+
+    .zone-tile:hover {
+      transform: scale(1.03);
+    }
+  </style>
+</head>
+<body>
+  <h1>Welkom in het ACAΛI Portaal</h1>
+  <div class="zone-grid">
+    <div class="zone-tile" onclick="openComfort()">Bureauruimte</div>
+    <div class="zone-tile" onclick="openComfort()">Vergaderruimte</div>
+    <div class="zone-tile" onclick="openComfort()">Lounge</div>
+  </div>
+
+  <script>
+    function openComfort() {
+      window.location.href = "comfort.html";
+    }
+  </script>
+</body>
+</html>

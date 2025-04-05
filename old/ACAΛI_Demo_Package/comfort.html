@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ACAΛI Comfort Instellingen</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      background: #f8f8f8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      transition: background 0.5s ease, color 0.5s ease;
+    }
+
+    .comfort-container {
+      background: white;
+      padding: 2rem 3rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 400px;
+    }
+
+    .comfort-container img {
+      width: 64px;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+    }
+
+    .slogan {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    .preset-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .button {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      color: white;
+    }
+
+    .focus    { background-color: #556ee6; }
+    .flow     { background-color: #00bcd4; }
+    .herbron  { background-color: #4caf50; }
+    .dynamiek { background-color: #f44336; }
+
+    .button:hover {
+      opacity: 0.9;
+    }
+
+    .back-button {
+      margin-top: 1rem;
+      padding: 0.5rem 1.25rem;
+      background-color: #111;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="comfort-container">
+    <img src="logo.png" alt="ACAΛI Logo" />
+    <h2>Comfortinstellingen</h2>
+    <p class="slogan" id="sfeerText">Kies een sfeer die bij je moment past.</p>
+
+    <div class="preset-buttons">
+      <button class="button focus" onclick="setPreset('focus')">Focus</button>
+      <button class="button flow" onclick="setPreset('flow')">Flow</button>
+      <button class="button herbron" onclick="setPreset('herbron')">Herbronning</button>
+      <button class="button dynamiek" onclick="setPreset('dynamiek')">Dynamiek</button>
+    </div>
+
+    <button class="back-button" onclick="goBack()">Terug naar Dashboard</button>
+  </div>
+
+  <script>
+    function setPreset(preset) {
+      const sfeerText = document.getElementById("sfeerText");
+      switch(preset) {
+        case 'focus':
+          document.body.style.background = '#e3e7f9';
+          document.body.style.color = '#111';
+          sfeerText.textContent = 'Sfeer: Focus – Koel en helder voor diepe concentratie.';
+          break;
+        case 'flow':
+          document.body.style.background = '#d0f2f8';
+          document.body.style.color = '#111';
+          sfeerText.textContent = 'Sfeer: Flow – Creatieve energie en mentale ruimte.';
+          break;
+        case 'herbron':
+          document.body.style.background = '#e2f5e8';
+          document.body.style.color = '#111';
+          sfeerText.textContent = 'Sfeer: Herbronning – Rust en ademruimte.';
+          break;
+        case 'dynamiek':
+          document.body.style.background = '#fde3e1';
+          document.body.style.color = '#111';
+          sfeerText.textContent = 'Sfeer: Dynamiek – Actief en energiek moment.';
+          break;
+      }
+    }
+
+    function goBack() {
+      window.location.href = "dashboard.html";
+    }
+  </script>
+</body>
+</html>

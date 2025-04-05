@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>ACAΛI Comfort Profiler</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f6f4ed;
+      text-align: center;
+      padding: 40px;
+    }
+
+    select, input[type="range"], button {
+      margin: 10px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #e5e0d4;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button.active {
+      background-color: #333;
+      color: white;
+    }
+
+    #suggestionBox {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #333;
+      color: white;
+      padding: 14px 20px;
+      border-radius: 8px;
+      display: none;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    #suggestionBox button {
+      background: none;
+      border: none;
+      color: #ffd;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>ACAΛI Comfort Profiler</h1>
+
+  <label><strong>Zone:</strong></label>
+  <select id="zoneSelect">
+    <option value="bureauruimte">Bureauruimte</option>
+    <option value="vergaderruimte">Vergaderruimte</option>
+    <option value="lounge">Lounge</option>
+  </select>
+
+  <h3>Presets</h3>
+  <div class="presets">
+    <button id="focus">Focus</button>
+    <button id="ontspanning">Ontspanning</button>
+    <button id="stilte">Stilte</button>
+  </div>
+
+  <div id="suggestionBox">
+    <span id="suggestionMessage"></span>
+    <button onclick="acceptPreset()">Ja</button>
+    <button onclick="hideSuggestion()">Nee</button>
+  </div>
+
+  <script>
+    const zoneSelect = document.getElementById("zoneSelect");
+    const suggestionBox = document.getElementById("suggestionBox");
+    const suggestionMessage = document.getElementById("suggestionMessage");
+
+    let presetStats = JSON.parse(localStorage.getItem("presetStats") || "{}");
+    let currentSuggestion = null;
+
+    function saveStats() {
+      localStorage.setItem("presetStats", JSON.stringify(presetStats));
+    }
+
+    function trackPreset(preset) {
+      const zone = zoneSelect.value;
+      const hour = new Date().getHours();
+      const key = `${zone}_${preset}_${hour}`;
+      presetStats[key] = (presetStats[key] || 0) + 1;
+      saveStats();
+
+      if (presetStats[key] === 4) {
+        currentSuggestion = preset;
+        suggestionMessage.textContent = `Je koos al 4x voor '${preset}' rond dit uur in de zone '${zone}'. Standaard maken?`;
+        suggestionBox.style.display = "flex";
+      }
+    }
+
+    function acceptPreset() {
+      const zone = zoneSelect.value;
+      localStorage.setItem(`default-${zone}`, currentSuggestion);
+      alert(`Preset '${currentSuggestion}' is nu standaard voor ${zone}.`);
+      hideSuggestion();
+    }
+
+    function hideSuggestion() {
+      suggestionBox.style.display = "none";
+      currentSuggestion = null;
+    }
+
+    ["focus", "ontspanning", "stilte"].forEach(preset => {
+      document.getElementById(preset).addEventListener("click", () => {
+        trackPreset(preset);
+        alert(`Preset '${preset}' toegepast`);
+      });
+    });
+  </script>
+</body>
+</html>

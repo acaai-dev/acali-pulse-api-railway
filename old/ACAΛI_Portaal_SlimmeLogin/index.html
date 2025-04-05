@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>ACAΛI Comfort Zones Tool</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f6f4ed;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      font-size: 28px;
+    }
+    select, input[type="range"], button {
+      margin: 10px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #e5e0d4;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button.active {
+      background-color: #333;
+      color: white;
+    }
+    #toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #333;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 6px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      z-index: 1000;
+      font-size: 14px;
+    }
+    #toast button {
+      background: none;
+      border: none;
+      color: #ffd;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    #toast.hidden {
+      display: none;
+    }
+    #statusBox {
+      position: fixed;
+      top: 30px;
+      right: 30px;
+      background: #ffffff;
+      padding: 16px 20px;
+      border: 2px solid #e0ddd7;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      font-size: 14px;
+      width: 220px;
+      z-index: 100;
+      text-align: left;
+    }
+    #statusBox p {
+      margin: 6px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>ACAΛI Comfort Zones</h1>
+  <label><strong>Kies een zone:</strong></label>
+  <select id="zoneSelect">
+    <option value="bureauruimte">Bureauruimte</option>
+    <option value="vergaderruimte">Vergaderruimte</option>
+    <option value="lounge">Lounge</option>
+  </select>
+  <h3>Temperatuur</h3>
+  <input type="range" id="tempSlider" min="18" max="28" value="22">
+  <p id="tempDisplay">Gekozen temperatuur: 22°C</p>
+  <h3>Licht</h3>
+  <input type="range" id="lightSlider" min="0" max="100" value="60">
+  <p id="lightDisplay">Lichtniveau: 60%</p>
+  <h3>Geluid</h3>
+  <select id="soundSelect">
+    <option value="geen">geen</option>
+    <option value="white noise">white noise</option>
+    <option value="muziek">muziek</option>
+  </select>
+  <p id="soundDisplay">Geluid: geen</p>
+  <h3>Presets:</h3>
+  <div class="presets">
+    <button id="focus">Focus</button>
+    <button id="ontspanning">Ontspanning</button>
+    <button id="stilte">Stilte</button>
+  </div>
+  <div id="toast" class="hidden">
+    <span id="toastMessage">Standaardinstelling gewijzigd.</span>
+    <button onclick="undo()">Ongedaan maken</button>
+  </div>
+  <div id="statusBox">
+    <p>📍 Zone: <span id="statusZone">–</span></p>
+    <p>🌡️ Temp: <span id="statusTemp">–</span>°C</p>
+    <p>💡 Licht: <span id="statusLight">–</span>%</p>
+    <p>🔊 Geluid: <span id="statusSound">–</span></p>
+    <p>🎛️ Preset: <span id="statusPreset">–</span></p>
+    <p>🕒 Laatste wijziging: <span id="statusTime">–</span></p>
+  </div>
+  <script>
+    const zoneSelect = document.getElementById("zoneSelect");
+    const tempSlider = document.getElementById("tempSlider");
+    const lightSlider = document.getElementById("lightSlider");
+    const soundSelect = document.getElementById("soundSelect");
+    const tempDisplay = document.getElementById("tempDisplay");
+    const lightDisplay = document.getElementById("lightDisplay");
+    const soundDisplay = document.getElementById("soundDisplay");
+    const toast = document.getElementById("toast");
+    const toastMessage = document.getElementById("toastMessage");
+
+    const presets = {
+      focus: { temp: 22, light: 70, sound: "white noise" },
+      ontspanning: { temp: 24, light: 50, sound: "muziek" },
+      stilte: { temp: 21, light: 40, sound: "geen" }
+    };
+
+    let lastSettings = {};
+    let presetCounts = {};
+    let lastChangeTime = new Date();
+
+    function getActivePreset() {
+      return document.querySelector(".presets button.active")?.textContent || "–";
+    }
+
+    function updateDisplays() {
+      tempDisplay.textContent = `Gekozen temperatuur: ${tempSlider.value}°C`;
+      lightDisplay.textContent = `Lichtniveau: ${lightSlider.value}%`;
+      soundDisplay.textContent = `Geluid: ${soundSelect.value}`;
+    }
+
+    function updateStatusBox() {
+      document.getElementById("statusZone").textContent = zoneSelect.value;
+      document.getElementById("statusTemp").textContent = tempSlider.value;
+      document.getElementById("statusLight").textContent = lightSlider.value;
+      document.getElementById("statusSound").textContent = soundSelect.value;
+      document.getElementById("statusPreset").textContent = getActivePreset();
+      lastChangeTime = new Date();
+    }
+
+    function refreshClock() {
+      const now = new Date();
+      const diff = Math.floor((now - lastChangeTime) / 1000);
+      let label = "net aangepast";
+      if (diff > 60) {
+        const min = Math.floor(diff / 60);
+        label = `${min} min geleden`;
+      } else if (diff > 10) {
+        label = `${diff} sec geleden`;
+      }
+      document.getElementById("statusTime").textContent = label;
+    }
+    setInterval(refreshClock, 1000);
+
+    function saveSettings() {
+      const zone = zoneSelect.value;
+      const settings = {
+        temp: tempSlider.value,
+        light: lightSlider.value,
+        sound: soundSelect.value,
+        preset: getActivePreset()
+      };
+      localStorage.setItem(`zone-${zone}`, JSON.stringify(settings));
+    }
+
+    function loadSettings() {
+      const zone = zoneSelect.value;
+      const saved = JSON.parse(localStorage.getItem(`zone-${zone}`));
+      if (saved) {
+        tempSlider.value = saved.temp || 22;
+        lightSlider.value = saved.light || 60;
+        soundSelect.value = saved.sound || "geen";
+        setActivePreset(saved.preset);
+      } else {
+        tempSlider.value = 22;
+        lightSlider.value = 60;
+        soundSelect.value = "geen";
+        clearActivePresets();
+      }
+      updateDisplays();
+      updateStatusBox();
+      suggestComfortPreset();
+    }
+
+    function setActivePreset(name) {
+      clearActivePresets();
+      if (presets[name]) {
+        document.getElementById(name).classList.add("active");
+      }
+    }
+
+    function clearActivePresets() {
+      Object.keys(presets).forEach(p => document.getElementById(p).classList.remove("active"));
+    }
+
+    function applyPreset(name) {
+      const zone = zoneSelect.value;
+      const preset = presets[name];
+      lastSettings[zone] = {
+        temp: tempSlider.value,
+        light: lightSlider.value,
+        sound: soundSelect.value
+      };
+      tempSlider.value = preset.temp;
+      lightSlider.value = preset.light;
+      soundSelect.value = preset.sound;
+      setActivePreset(name);
+      updateDisplays();
+      updateStatusBox();
+      saveSettings();
+      const key = `${zone}_${name}`;
+      presetCounts[key] = (presetCounts[key] || 0) + 1;
+      localStorage.setItem("lastPreset", name);
+      const countKey = "count_" + name;
+      let currentCount = parseInt(localStorage.getItem(countKey) || "0");
+      localStorage.setItem(countKey, currentCount + 1);
+      if (presetCounts[key] === 3) {
+        const confirmed = confirm(`Je koos 3x voor "${name}" in zone "${zone}". Standaard maken?`);
+        if (confirmed) {
+          localStorage.setItem(`default-${zone}`, name);
+          showToast(`'${name}' is nu de standaardpreset voor "${zone}".`);
+        }
+      }
+    }
+
+    function showToast(msg) {
+      toastMessage.textContent = msg;
+      toast.classList.remove("hidden");
+      setTimeout(() => toast.classList.add("hidden"), 6000);
+    }
+
+    function undo() {
+      const zone = zoneSelect.value;
+      const last = lastSettings[zone];
+      if (!last) return;
+      tempSlider.value = last.temp;
+      lightSlider.value = last.light;
+      soundSelect.value = last.sound;
+      updateDisplays();
+      updateStatusBox();
+      clearActivePresets();
+      toast.classList.add("hidden");
+      saveSettings();
+    }
+
+    function suggestComfortPreset() {
+      const hour = new Date().getHours();
+      const zone = zoneSelect.value;
+      const focusCount = presetCounts[`${zone}_focus`] || 0;
+      if (hour >= 13 && hour <= 15 && focusCount >= 2) {
+        showToast("🧠 Suggestie: Wil je overschakelen naar preset ‘Focus’?");
+      }
+    }
+
+    zoneSelect.addEventListener("change", loadSettings);
+    tempSlider.addEventListener("input", () => {
+      updateDisplays(); updateStatusBox(); clearActivePresets(); saveSettings();
+    });
+    lightSlider.addEventListener("input", () => {
+      updateDisplays(); updateStatusBox(); clearActivePresets(); saveSettings();
+    });
+    soundSelect.addEventListener("change", () => {
+      updateDisplays(); updateStatusBox(); clearActivePresets(); saveSettings();
+    });
+    Object.keys(presets).forEach(p => {
+      document.getElementById(p).addEventListener("click", () => applyPreset(p));
+    });
+    window.addEventListener("load", loadSettings);
+  </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ACAΛI Login</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      animation: fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .login-card {
+      background: white;
+      padding: 3rem 2.5rem;
+      border-radius: 24px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      width: 300px;
+    }
+
+    .login-card img {
+      width: 48px;
+      margin-bottom: 1.5rem;
+    }
+
+    .login-card h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      letter-spacing: 3px;
+      font-weight: 700;
+    }
+
+    .slogan {
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    .login-button {
+      padding: 0.75rem 1.5rem;
+      background-color: #111;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .login-button:hover {
+      background-color: #333;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="login-card">
+    <img src="logo.png" alt="ACAΛI Logo" />
+    <h1>ACAΛI</h1>
+    <p class="slogan">Smart Spaces. Human Rhythm.</p>
+    <button class="login-button" onclick="login()">Login</button>
+  </div>
+
+  <script>
+    function login() {
+      window.location.href = "dashboard.html";
+    }
+  </script>
+</body>
+</html>

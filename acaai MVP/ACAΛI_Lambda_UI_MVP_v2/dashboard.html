@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ACAΛI Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header><h2>ACAΛI λ Dashboard</h2></header>
+    <main>
+        <p>Kies een preset:</p>
+        <div id="preset-buttons"></div>
+        <br><br>
+        <button onclick="goToComfort()">Comfortinstellingen</button>
+    </main>
+    <script>
+        async function loadPresets() {
+            const response = await fetch('config.json');
+            const data = await response.json();
+            const container = document.getElementById('preset-buttons');
+            Object.keys(data).forEach(preset => {
+                const btn = document.createElement('button');
+                btn.innerText = preset;
+                btn.onclick = () => {
+                    localStorage.setItem('selectedPreset', preset);
+                    localStorage.setItem('presetData', JSON.stringify(data[preset]));
+                    alert("Preset ingesteld op: " + preset);
+                };
+                container.appendChild(btn);
+            });
+        }
+
+        function goToComfort() {
+            window.location.href = "comfort.html";
+        }
+
+        loadPresets();
+    </script>
+</body>
+</html>

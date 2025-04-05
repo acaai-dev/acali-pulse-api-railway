@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ACAΛI Comfort</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header><h2>Comfortinstellingen</h2></header>
+    <main>
+        <p>Huidige preset: <span id="activePreset"></span></p>
+        <div id="presetDetails"></div>
+        <br>
+        <input type="range" min="-2" max="2" value="0" step="1" id="slider">
+        <p>Voorkeur: <span id="sliderValue">Neutraal</span></p>
+        <br>
+        <button onclick="goBack()">Terug naar dashboard</button>
+    </main>
+    <script>
+        const preset = localStorage.getItem('selectedPreset') || 'Geen';
+        const presetData = JSON.parse(localStorage.getItem('presetData') || '{}');
+        document.getElementById("activePreset").innerText = preset;
+
+        const details = document.getElementById("presetDetails");
+        if (presetData && Object.keys(presetData).length > 0) {
+            for (let key in presetData) {
+                const p = document.createElement('p');
+                p.innerText = key + ": " + presetData[key];
+                details.appendChild(p);
+            }
+        }
+
+        const slider = document.getElementById("slider");
+        const valueLabel = document.getElementById("sliderValue");
+
+        slider.addEventListener("input", () => {
+            const value = parseInt(slider.value);
+            const label = value === 0 ? "Neutraal" : (value > 0 ? "Warmer" : "Kouder");
+            valueLabel.textContent = label;
+            logAction("Slider aangepast: " + label);
+        });
+
+        function logAction(message) {
+            fetch("http://localhost:8000/log", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({ action: message })
+            });
+        }
+
+        function goBack() {
+            window.location.href = "dashboard.html";
+        }
+    </script>
+</body>
+</html>

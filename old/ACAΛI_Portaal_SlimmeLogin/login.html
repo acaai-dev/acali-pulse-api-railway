@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>ACAΛI Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f6f4ed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 300px;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    button {
+      background-color: #e5e0d4;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+    }
+
+    .footer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h1>ACAΛI Login</h1>
+    <label for="userSelect">Selecteer gebruiker:</label>
+    <select id="userSelect">
+      <option value="Arnaud">Arnaud</option>
+      <option value="Charlotte">Charlotte</option>
+      <option value="Ahmed">Ahmed</option>
+    </select>
+    <button onclick="login()">Inloggen</button>
+    <div class="footer">Demo login – zonder wachtwoord</div>
+  </div>
+
+  <script>
+    function login() {
+      const user = document.getElementById("userSelect").value;
+      localStorage.setItem("acaiUser", user);
+      window.location.href = "dashboard.html";
+    }
+  </script>
+</body>
+</html>

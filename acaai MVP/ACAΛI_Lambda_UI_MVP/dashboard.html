@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ACAΛI Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header><h2>ACAΛI λ Dashboard</h2></header>
+    <main>
+        <p>Kies een preset:</p>
+        <button onclick="selectPreset('Focus')">Focus</button>
+        <button onclick="selectPreset('Herbronnen')">Herbronnen</button>
+        <button onclick="selectPreset('Overleg')">Overleg</button>
+        <button onclick="selectPreset('Eco')">Eco</button>
+        <br><br>
+        <button onclick="goToComfort()">Comfortinstellingen</button>
+    </main>
+    <script>
+        function selectPreset(preset) {
+            localStorage.setItem('selectedPreset', preset);
+            alert("Preset ingesteld op: " + preset);
+        }
+        function goToComfort() {
+            window.location.href = "comfort.html";
+        }
+    </script>
+</body>
+</html>

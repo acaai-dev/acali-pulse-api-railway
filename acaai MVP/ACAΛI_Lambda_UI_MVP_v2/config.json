@@ -1,0 +1,26 @@
+
+{
+  "Focus": {
+    "temperature": 21.0,
+    "light_lux": 600,
+    "light_color_temp": 4000,
+    "ventilation": "medium"
+  },
+  "Herbronnen": {
+    "temperature": 22.5,
+    "light_lux": 250,
+    "light_color_temp": 2700,
+    "ventilation": "low"
+  },
+  "Overleg": {
+    "temperature": 21.5,
+    "light_lux": 450,
+    "light_color_temp": 3500,
+    "ventilation": "high"
+  },
+  "Eco": {
+    "temperature_offset": -3,
+    "light_off": true,
+    "ventilation": "minimal"
+  }
+}

@@ -1,0 +1,34 @@
+
+ACAΛI Software Requirements:
+1. **Tablet Interface (UI/UX)**:
+   - Develop a user-friendly interface for managing comfort settings (temperature, light intensity).
+   - Must work with both **Android** and **iOS** tablets (e.g., iPad or Android tablet).
+   - Display presets: Focus, Social, Natural.
+   - Include a **slider** for adjusting temperature and light intensity.
+   - Option for extra buttons like "More Light" and "Extra Comfort".
+
+2. **Cloud Integration**:
+   - Software should communicate with the cloud for storing and analyzing user behavior data.
+   - Must allow real-time monitoring of comfort settings and adjustments.
+   - Capability to collect data on energy usage and environmental parameters (e.g., CO₂ levels, temperature, light levels).
+   
+3. **IoT Integration**:
+   - Ability to control IoT devices such as smart lights, thermostats, and sensors.
+   - Integration with devices like **Philips Hue**, **Netatmo thermostats**, **Aqara motion sensors**.
+   - Use **Raspberry Pi** or **Mini-PC** to handle local processing and data transmission to the cloud.
+   
+4. **Security**:
+   - Ensure the platform is secure and protects user data.
+   - Secure communication between tablet, IoT devices, and cloud using encryption.
+
+5. **User Preferences**:
+   - Option to store user preferences for comfort settings.
+   - Use IoT sensors and data analysis to adapt and learn preferences over time.
+
+6. **Reporting**:
+   - Implement a dashboard to visualize data collected on comfort settings and energy consumption.
+   - Generate downloadable reports in CSV or PDF formats.
+
+7. **Scalability**:
+   - The solution should be scalable and easy to deploy across multiple rooms or offices.
+

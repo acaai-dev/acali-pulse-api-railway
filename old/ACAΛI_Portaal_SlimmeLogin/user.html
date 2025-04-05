@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>ACAΛI Gebruikersdashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f6f4ed;
+      margin: 0;
+      padding: 0;
+    }
+
+    .topbar {
+      background-color: #fff;
+      border-bottom: 1px solid #ddd;
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .topbar h1 {
+      font-size: 20px;
+      margin: 0;
+    }
+
+    .user-box {
+      font-size: 14px;
+      color: #333;
+    }
+
+    .main-content {
+      padding: 40px;
+      text-align: center;
+    }
+
+    .main-content h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .suggestion-box {
+      background-color: #ffffff;
+      padding: 20px;
+      border: 2px solid #e0ddd7;
+      border-radius: 12px;
+      display: inline-block;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 20px;
+      background-color: #e5e0d4;
+      color: #333;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <h1>ACAΛI Portaal</h1>
+    <div class="user-box">
+      Ingelogd als: <strong id="userName">–</strong><br>
+      Laatst gebruikte preset: <em id="userPreset">–</em>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <h2 id="greeting">Welkom terug</h2>
+    <div class="suggestion-box">
+      <p id="suggestionText">🧠 ACAΛI Pulse is aan het leren van je gedrag...</p>
+      <a class="button" href="comfort.html">Pas mijn comfort aan</a>
+    </div>
+    <p><a href="dashboard.html" class="button">Ga naar zoneoverzicht</a></p>
+  </div>
+
+  <script>
+    const username = localStorage.getItem("acaiUser") || "Arnaud";
+    const preset = localStorage.getItem("lastPreset") || "Ontspanning";
+
+    document.getElementById("userName").textContent = username;
+    document.getElementById("userPreset").textContent = preset;
+    document.getElementById("greeting").textContent = `Welkom terug, ${username}`;
+
+    const focusCount = parseInt(localStorage.getItem("count_focus") || "0");
+    if (focusCount >= 3) {
+      document.getElementById("suggestionText").innerHTML = "🧠 ACAΛI Pulse: Wil je overschakelen naar preset ‘Focus’? (Gebaseerd op jouw gedrag)";
+    } else {
+      document.getElementById("suggestionText").textContent = "🧠 ACAΛI Pulse leert van jouw interacties...";
+    }
+  </script>
+</body>
+</html>
